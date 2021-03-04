@@ -4,9 +4,11 @@
       <h2>Інформація про користувача</h2>
       <hr>
       <AddUser @addUser='addOnUser' />
-      <hr>
-      <p class="text-lg-left">Кількість користувачів: <b>{{users.length}}</b></p>
-      <UserList v-if="users !== []"  v-bind:users = 'users'/>
+      <div v-if='users.length !== 0' >
+        <hr>
+        <p class="text-lg-left">Кількість користувачів: <b>{{users.length}}</b></p>
+        <UserList  v-bind:users = 'users'/>
+      </div>
     </div>
   </div>
 </template>
@@ -28,8 +30,6 @@ export default {
   methods: {
     addOnUser (data) {
       this.users.push(data)
-      console.log(this.users)
-
     }
   }
 }
