@@ -15,7 +15,7 @@
       </div>
       <br>
       <div class="col">
-        <button  class="btn btn-primary"
+        <button  type="submit" class="btn btn-primary"
                  @click='addUser'
                  v-bind:class="[ (Object.keys(user).length === 3) && errors.length === 0 && user.age !== '' ? '' :  'disabled']">
           Add User</button>
