@@ -10,14 +10,14 @@
           <input type="text" class="form-control"  maxlength=50 placeholder="Your Email"  @blur="validEmail" v-model="mail">
         </div>
         <div class="col-sm">
-          <input  type="number" class="form-control" placeholder="Your Age" v-model="age" >
+          <input  type="number" min="1" class="form-control" placeholder="Your Age" v-model="age" >
         </div>
       </div>
       <br>
       <div class="col">
         <button  class="btn btn-primary"
                  @click='addUser'
-                 v-bind:class="[ (Object.keys(user).length === 3) && errors.length === 0 ? '' :  'disabled']">
+                 v-bind:class="[ (Object.keys(user).length === 3) && errors.length === 0 && user.age !== '' ? '' :  'disabled']">
           Add User</button>
       </div>
     </form>
@@ -49,7 +49,8 @@ export default {
         this.user.yourName = this.yourName;
         this.checkError(errorText)
       } else {
-        this.checkError(errorText)
+        this.checkError(errorText);
+
         if(this.checkError(errorText) === -1 ){
           this.errors.push(errorText);
         }
@@ -65,6 +66,7 @@ export default {
         this.checkError(errorText);
       } else {
         this.checkError(errorText);
+
         if(this.checkError(errorText) === -1 ){
           this.errors.push(errorText);
         }
@@ -79,6 +81,7 @@ export default {
       let index = this.errors.indexOf(errorType);
       if (index !== -1) {
         this.errors.splice(index, 1);
+        return;
       }
       return index;
     }
